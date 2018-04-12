@@ -35,10 +35,10 @@ class ToolbarEmotion {
       const { url, name, size = 20 } = item
       const emotionItem = document.createElement('li')
       emotionItem.classList.add('ql-emotion-item')
+      emotionItem.setAttribute('title', name)
       const emotionImage = document.createElement('img')
       emotionImage.setAttribute('src', url)
       emotionImage.setAttribute('alt', name)
-      emotionImage.setAttribute('title', name)
       emotionImage.style.width = size + 'px'
       emotionImage.style.height = size + 'px'
       emotionItem.appendChild(emotionImage)
