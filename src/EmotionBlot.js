@@ -1,15 +1,19 @@
 const Parchment = Quill.import('parchment')
 
 class EmotionBlot extends Parchment.Embed {
-  static create (value = {}) {
+  static create (value) {
     const node = super.create()
-    const { url, name, size = 20 } = value
-    node.classList.add('emotion')
-    node.setAttribute('src', url)
-    node.setAttribute('alt', name)
-    node.setAttribute('title', name)
-    node.setAttribute('width', size)
-    node.setAttribute('height', size)
+    if (typeof value === 'object') {
+      const { url, name, size = 20 } = value
+      node.classList.add('emotion')
+      node.setAttribute('src', url)
+      node.setAttribute('alt', name)
+      node.setAttribute('title', name)
+      node.setAttribute('width', size)
+      node.setAttribute('height', size)
+    } else if (typeof value === 'string') {
+      node.setAttribute('src', value)
+    }
     return node
   }
 
@@ -25,6 +29,10 @@ class EmotionBlot extends Parchment.Embed {
       format.class = node.getAttribute('class')
     }
     return format;
+  }
+
+  static value (node) {
+    return node.getAttribute('src')
   }
 }
 
